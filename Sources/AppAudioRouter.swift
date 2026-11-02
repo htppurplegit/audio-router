@@ -17,7 +17,6 @@ final class AppAudioRouter {
     private var tapID = kUnknownObject
     private var aggregateID = kUnknownObject
     private var ioProcID: AudioDeviceIOProcID?
-    private let ioQueue = DispatchQueue(label: "AudioRouter.io", qos: .userInteractive)
 
     init(bundleID: String, processObjects: Set<AudioObjectID>, deviceUID: String) throws {
         self.bundleID = bundleID
@@ -63,8 +62,13 @@ final class AppAudioRouter {
         try caCheck(AudioHardwareCreateAggregateDevice(aggregate as CFDictionary, &aggregateID),
                     "Creating aggregate device")
 
-        // 3. Copy captured audio to the output.
-        try caCheck(AudioDeviceCreateIOProcIDWithBlock(&ioProcID, aggregateID, ioQueue) { _, inInput, _, outOutput, _ in
+        // Small buffer = less added delay (~5 ms at 48 kHz). Ignored if the device refuses.
+        var frames: UInt32 = 256
+        var bufAddr = CA.address(kAudioDevicePropertyBufferFrameSize)
+        AudioObjectSetPropertyData(aggregateID, &bufAddr, 0, nil, UInt32(MemoryLayout<UInt32>.size), &frames)
+
+        // 3. Copy captured audio to the output, directly on the real-time audio thread.
+        try caCheck(AudioDeviceCreateIOProcIDWithBlock(&ioProcID, aggregateID, nil) { _, inInput, _, outOutput, _ in
             AppAudioRouter.render(
                 input: UnsafeMutableAudioBufferListPointer(UnsafeMutablePointer(mutating: inInput)),
                 output: UnsafeMutableAudioBufferListPointer(outOutput)
