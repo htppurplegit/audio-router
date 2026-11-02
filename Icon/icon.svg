@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3B3F9A"/>
+      <stop offset="1" stop-color="#22224F"/>
+    </linearGradient>
+    <linearGradient id="fur" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFB24D"/>
+      <stop offset="1" stop-color="#F08A24"/>
+    </linearGradient>
+    <linearGradient id="cup" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4FE0D2"/>
+      <stop offset="1" stop-color="#22A99C"/>
+    </linearGradient>
+    <clipPath id="sq"><rect x="100" y="100" width="824" height="824" rx="185"/></clipPath>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- macOS-style rounded square -->
+  <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg)"/>
+
+  <!-- sound waves -->
+  <g fill="none" stroke="#4FE0D2" stroke-width="22" stroke-linecap="round" opacity="0.5" clip-path="url(#sq)">
+    <path d="M 800 500 A 100 100 0 0 1 800 660"/>
+    <path d="M 836 455 A 150 150 0 0 1 836 705"/>
+    <path d="M 224 500 A 100 100 0 0 0 224 660"/>
+    <path d="M 188 455 A 150 150 0 0 0 188 705"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <!-- headphone band (behind head) -->
+    <path d="M 282 610 C 270 260, 754 260, 742 610" fill="none" stroke="#15163A" stroke-width="40" stroke-linecap="round"/>
+
+    <!-- ears -->
+    <path d="M 318 470 L 352 262 Q 358 240 378 252 L 488 372 Z" fill="url(#fur)"/>
+    <path d="M 706 470 L 672 262 Q 666 240 646 252 L 536 372 Z" fill="url(#fur)"/>
+    <path d="M 352 430 L 372 300 L 450 384 Z" fill="#F9B7B0"/>
+    <path d="M 672 430 L 652 300 L 574 384 Z" fill="#F9B7B0"/>
+
+    <!-- head -->
+    <ellipse cx="512" cy="590" rx="236" ry="206" fill="url(#fur)"/>
+
+    <!-- tabby stripes -->
+    <g fill="none" stroke="#D86E12" stroke-width="18" stroke-linecap="round">
+      <path d="M 512 402 L 512 452"/>
+      <path d="M 470 410 L 478 450"/>
+      <path d="M 554 410 L 546 450"/>
+    </g>
+
+    <!-- muzzle -->
+    <ellipse cx="512" cy="672" rx="96" ry="70" fill="#FFE3C2"/>
+
+    <!-- eyes -->
+    <ellipse cx="430" cy="580" rx="30" ry="40" fill="#2A1A10"/>
+    <ellipse cx="594" cy="580" rx="30" ry="40" fill="#2A1A10"/>
+    <circle cx="440" cy="566" r="11" fill="#fff"/>
+    <circle cx="604" cy="566" r="11" fill="#fff"/>
+
+    <!-- nose + mouth -->
+    <path d="M 490 640 L 534 640 L 512 664 Z" fill="#E86A7E" stroke="#E86A7E" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M 512 664 L 512 682 M 512 682 Q 492 704 470 690 M 512 682 Q 532 704 554 690" fill="none" stroke="#2A1A10" stroke-width="9" stroke-linecap="round"/>
+
+    <!-- whiskers -->
+    <g stroke="#FFF4E6" stroke-width="7" stroke-linecap="round">
+      <path d="M 410 666 L 330 650"/>
+      <path d="M 410 686 L 334 698"/>
+      <path d="M 614 666 L 694 650"/>
+      <path d="M 614 686 L 690 698"/>
+    </g>
+
+    <!-- ear cups -->
+    <rect x="236" y="520" width="86" height="178" rx="40" fill="#15163A"/>
+    <rect x="252" y="540" width="54" height="138" rx="26" fill="url(#cup)"/>
+    <rect x="702" y="520" width="86" height="178" rx="40" fill="#15163A"/>
+    <rect x="718" y="540" width="54" height="138" rx="26" fill="url(#cup)"/>
+  </g>
+</svg>
